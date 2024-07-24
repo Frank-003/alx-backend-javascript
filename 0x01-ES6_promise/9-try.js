@@ -15,19 +15,3 @@ function guardrail(mathFunction) {
 
     return queue;
 }
-
-// Example usage:
-function exampleFunction() {
-    return 1000;
-}
-
-function errorFunction() {
-    throw new Error('Something went wrong!');
-}
-
-console.log(guardrail(exampleFunction));
-// Output: [1000, 'Guardrail was processed']
-
-console.log(guardrail(errorFunction));
-// Output: ['Something went wrong!', 'Guardrail was processed']
-
