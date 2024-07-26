@@ -1,25 +1,41 @@
-class Car {
-    constructor(brand, motor, color) {
-        this._brand = brand;
-        this._motor = motor;
-        this._color = color;
-    }
+export default class Car {
+  constructor(brand, motor, color) {
+    this.brand = brand;
+    this.motor = motor;
+    this.color = color;
+  }
 
-    // Method to clone the car object
-    cloneCar() {
-        const clone = Object.create(Object.getPrototypeOf(this));
-        clone._brand = this._brand;
-        clone._motor = this._motor;
-        clone._color = this._color;
-        return clone;
-    }
+  get brand() {
+    return this._brand;
+  }
+
+  set brand(value) {
+    this._brand = value;
+  }
+
+  get motor() {
+    return this._motor;
+  }
+
+  set motor(value) {
+    this._motor = value;
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  set color(value) {
+    this._color = value;
+  }
+
+  static get [Symbol.species]() {
+    return this;
+  }
+
+  cloneCar() {
+    const Species = this.constructor[Symbol.species];
+
+    return new Species();
+  }
 }
-
-// Example usage:
-const originalCar = new Car('Toyota', 'V8', 'Red');
-const clonedCar = originalCar.cloneCar();
-
-console.log(originalCar); // Output: Car { _brand: 'Toyota', _motor: 'V8', _color: 'Red' }
-console.log(clonedCar);   // Output: Car { _brand: 'Toyota', _motor: 'V8', _color: 'Red' }
-console.log(originalCar === clonedCar); // Output: false
-
