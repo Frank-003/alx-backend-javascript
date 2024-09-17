@@ -1,16 +1,13 @@
-// Display the welcome message
-console.log("Welcome to Holberton School, what is your name?");
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
 
-// Capture user input from stdin
 process.stdin.on('readable', () => {
-   const chunk = process.stdin.read();
+  const chunk = process.stdin.read();
 
-    if (chunk){
-	    process.stdout.write('Your name is: ${chunk}');
-    }
+  if (chunk) {
+    process.stdout.write(`Your name is: ${chunk}`);
+  }
 });
 
-// When the program is about to exit, display the closing message
-process.on('exit', () => {
-    console.log("This important software is now closing");
+process.stdin.on('end', () => {
+  process.stdout.write('This important software is now closing\n');
 });
